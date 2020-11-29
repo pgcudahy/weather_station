@@ -1,7 +1,3 @@
-To get micropython to work, flash with `-fm dio` option. eg `
-`esptool.py --port /dev/tty.SLAB_USBtoUART write_flash -fm dio 0x00000 ~/Documents/Projects/weather_station/esp8266-20200416-v1.12-375-g28833690b.bin`
+A solar powered weather station based on [SparkFun weather meters](https://www.sparkfun.com/products/15901), [makerPower-solar](https://www.crowdsupply.com/danjuliodesigns/makerpower-solar), and an [ESP8266](https://www.nodemcu.com/index_en.html) running [micropython](http://micropython.org/). POSTS json data over wifi to an [R api](www.rplumber.io) running on a local Raspberry pi.
 
-per https://github.com/espressif/esptool, 
-
-Some ESP8266 modules, including the ESP-12E modules on some (not all) NodeMCU boards, are dual I/O and the firmware will only boot when flashed with 
-`--flash_mode dio`
+To get micropython to work, flash with `-fm dio` option. eg `esptool.py --port /dev/tty.SLAB_USBtoUART write_flash -fm dio 0x00000 esp8266-20200416-v1.12-375-g28833690b.bin`. Per https://github.com/espressif/esptool, some ESP8266 modules, including the ESP-12E modules on some (not all) NodeMCU boards, are dual I/O and the firmware will only boot when flashed with `--flash_mode dio`
