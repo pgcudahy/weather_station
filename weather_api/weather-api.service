@@ -1,0 +1,15 @@
+# Per https://www.rplumber.io/articles/hosting.html#systemd-1
+[Unit]
+Description=Plumber API
+# After=postgresql
+# (or mariadb, mysql, etc if you use a DB with Plumber, otherwise leave this commented)
+
+[Service]
+ExecStart=/usr/bin/Rscript -e "json_server <- plumber::plumb('/home/pi/weather_station/weather_api/receive_json.R'); json_server$run(host='192.168.1.151', port=9494)"
+Restart=always
+RestartSec=60
+WorkingDirectory=/home/pi
+SyslogIdentifier=WeatherAPI
+
+[Install]
+WantedBy=multi-user.target

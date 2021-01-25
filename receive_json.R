@@ -1,1 +1,0 @@
-weather_receiver/receive_json.R
