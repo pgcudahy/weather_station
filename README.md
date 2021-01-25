@@ -8,3 +8,4 @@ A solar powered weather station based on:
 
 The system POSTS json data over wifi to an [R api](www.rplumber.io) running on a local Raspberry pi.
 
+Developed as a series of jupyter notebooks using the [MicroPython Upydevice Kernel](https://github.com/Carglglz/jupyter_upydevice_kernel)
