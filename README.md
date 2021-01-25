@@ -1,3 +1,10 @@
-A solar powered weather station based on [SparkFun weather meters](https://www.sparkfun.com/products/15901), [makerPower-solar](https://www.crowdsupply.com/danjuliodesigns/makerpower-solar), and an [ESP8266](https://www.nodemcu.com/index_en.html) running [micropython](http://micropython.org/). POSTS json data over wifi to an [R api](www.rplumber.io) running on a local Raspberry pi.
+A solar powered weather station based on:
 
-To get micropython to work, flash with `-fm dio` option. eg `esptool.py --port /dev/tty.SLAB_USBtoUART write_flash -fm dio 0x00000 esp8266-20200416-v1.12-375-g28833690b.bin`. Per https://github.com/espressif/esptool, some ESP8266 modules, including the ESP-12E modules on some (not all) NodeMCU boards, are dual I/O and the firmware will only boot when flashed with `--flash_mode dio`
+1) [SparkFun weather meters](https://www.sparkfun.com/products/15901) and [weather shield](https://www.sparkfun.com/products/13674)
+
+2) [makerPower-solar](https://www.crowdsupply.com/danjuliodesigns/makerpower-solar) charge controller
+
+3) [ESP8266](https://www.nodemcu.com/index_en.html) running [micropython](http://micropython.org/). 
+
+The system POSTS json data over wifi to an [R api](www.rplumber.io) running on a local Raspberry pi.
+
