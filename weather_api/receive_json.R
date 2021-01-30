@@ -20,21 +20,45 @@ function(req, wind_direction_raw, rain_amount_raw, timestamp,
         "elapsed_time" = elapsed_time, 
         "message_id" = message_id)
 
-    write_csv(new_data, paste0("/home/pi/weather_station/data/weather_data_", 
-        Sys.Date(), ".csv"), append=TRUE)
-}
+    write_path <- paste0("/home/pi/weather_station/data/weather_data_", 
+            Sys.Date(), ".csv")
 
+    readr::write_csv(new_data, write_path, append=TRUE)
+
+    # if(assertthat::is.writeable(write_path)) {
+    #     write_csv(new_data, write_path, append=TRUE)
+    # } else if (!file.exists(write_path)) {
+    #     print("creating data file")
+    #     write_csv(new_data, write_path, append=TRUE)
+    # } else {
+    #     print("Weather data file at ", write_path, " is not writeable")
+    # }
+}
 #' @post /error
 #' @serializer json
 #' @param reset_time_date
 #' @param reset_cause
 function(req, reset_time_date, reset_cause){
-
+    print("launched")
     timeout_data <- tibble("Watchdog_timeout" = 
         ymd_hms(paste(reset_time_date[1:6], collapse="="), tz = "UTC"), 
-    "Watchdog_reason" = reset_cause)
-    write_csv(timeout_data, paste0("/home/pi/weather_station/data/timeouts_", 
-        Sys.Date(), ".csv"), append=TRUE)
+        "Watchdog_reason" = reset_cause)
+
+    write_path <- paste0("/home/pi/weather_station/data/timeouts_", Sys.Date(), ".csv")
+    print("wrote error log")
+    
+    readr::write_csv(timeout_data, write_path, append=TRUE)
+    
+    # if(assertthat::is.writeable(write_path)) {
+    #     print("error is writeable")
+    #     write_csv(timeout_data, write_path, append=TRUE)
+    # } else if (!file.exists(write_path)) {
+    #     print("creating error file")
+    #     write_csv(new_data, write_path, append=TRUE)
+    # } else {
+    #     print("Error data file at ", write_path, " is not writeable")
+    # }
+    # print("done")
 }
 
 #' @post /power
@@ -55,9 +79,20 @@ function(req, status_index, solar_watts, battery_voltage,
         "external_temperature" = external_temperature, 
         "power_time_date" = ymd_hms(paste(power_time_date[1:6], 
             collapse="="), tz = "UTC"))
-            
-    write_csv(power_data, paste0("/home/pi/weather_station/data/power_data_", 
-        Sys.Date(), ".csv"), append=TRUE)
+
+    write_path <- paste0("/home/pi/weather_station/data/power_data_", 
+        Sys.Date(), ".csv")
+
+    readr::write_csv(power_data, write_path, append=TRUE)
+
+    # if(assertthat::is.writeable(write_path)) {
+    #     write_csv(power_data, write_path, append=TRUE)
+    # } else if (!file.exists(write_path)) {
+    #     print("creating power file")
+    #     write_csv(power_data, write_path, append=TRUE)
+    # } else {
+    #     print("Power data file at ", write_path, " is not writeable")
+    # }
 }
 
 # #' Log some information about the incoming request
