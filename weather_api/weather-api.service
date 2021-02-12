@@ -1,10 +1,11 @@
-# Per https://www.rplumber.io/articles/hosting.html#systemd-1
 [Unit]
-Description=Plumber API
+Description=FastAPI Weather API
 
 [Service]
-ExecStart=/usr/bin/Rscript -e "library(plumber); pr_run(pr('/home/pi/weather_station/weather_api/receive_json.R'), port=9494, host='192.168.1.151')"
-Restart= always
+User=pi
+WorkingDirectory=/home/pi/weather_station/weather_api
+ExecStart=uvicorn main:app --host 192.168.1.151 --port 9494
+Restart=always
 RestartSec=60
 SyslogIdentifier=WeatherAPI
 
