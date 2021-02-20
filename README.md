@@ -6,6 +6,6 @@ A solar powered weather station based on:
 
 3) [ESP8266](https://www.nodemcu.com/index_en.html) running [micropython](http://micropython.org/). 
 
-The system POSTS json data over wifi to an [R api](www.rplumber.io) running on a local Raspberry pi.
+The system POSTS json data over wifi to a [fastAPI](https://fastapi.tiangolo.com/) running on a local Raspberry pi.
 
-Developed as a series of jupyter notebooks using the [MicroPython Upydevice Kernel](https://github.com/Carglglz/jupyter_upydevice_kernel)
+Micropython code developed as a series of jupyter notebooks using the [MicroPython Upydevice Kernel](https://github.com/Carglglz/jupyter_upydevice_kernel)
