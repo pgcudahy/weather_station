@@ -55,7 +55,7 @@ async def create_item(item: ErrorItem):
 
     write_path = "/home/pi/weather_station/data/reset_data_" + date.today().strftime("%Y-%m-%d") + ".csv"
 
-    #print(dict(item).values())
+    print(dict(item).values())
 
     with open(write_path, "a") as f:
         writer = csv.writer(f)

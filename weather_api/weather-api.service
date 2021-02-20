@@ -4,7 +4,9 @@ Description=FastAPI Weather API
 [Service]
 User=pi
 WorkingDirectory=/home/pi/weather_station/weather_api
-ExecStart=/home/pi/.local/bin/uvicorn main:app --host 192.168.1.151 --port 9494 --log-level warning
+ExecStart=/home/pi/.local/bin/uvicorn main:app --host 192.168.1.151 --port 9494 \
+--reload --reload-dir /home/pi/weather_station/weather_api \
+--log-level warning
 Restart=always
 RestartSec=60
 SyslogIdentifier=WeatherAPI
