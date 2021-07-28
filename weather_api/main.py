@@ -23,8 +23,8 @@ class PowerItem(BaseModel):
     power_time_date: list = []
 
 class ErrorItem(BaseModel):
-    error_time_date: list = []
-    reset_code = int
+    reset_time_date: list = []
+    reset_cause = str
 
 @app.post("/station")
 async def create_item(item: WeatherItem):
@@ -55,7 +55,7 @@ async def create_item(item: ErrorItem):
 
     write_path = "/home/pi/weather_station/data/reset_data_" + date.today().strftime("%Y-%m-%d") + ".csv"
 
-    print(dict(item).values())
+    print(f'Reset data: {dict(item).values()}')
 
     with open(write_path, "a") as f:
         writer = csv.writer(f)
