@@ -8,10 +8,13 @@ app = FastAPI()
 
 class WeatherItem(BaseModel):
     wind_direction_raw: int
+    pressure_pascals: float
     rain_amount_raw: int
     timestamp: list = []
     elapsed_time: int
     wind_speed_raw: int
+    temperature_celcius: float
+    relative_humidity: float
     message_id: int
 
 class PowerItem(BaseModel):
